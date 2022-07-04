@@ -8,6 +8,11 @@ export default class TaskModel {
     this.prisma = client as PrismaClient;
   }
 
+  public delete = async (id: number) => {
+    const task = await this.prisma.task.delete({ where: { id } });
+    return task;
+  };
+
   public update = async (id: number, task: TaskI) => {
     const updatedTask = await this.prisma.task.update({
       where: { id },

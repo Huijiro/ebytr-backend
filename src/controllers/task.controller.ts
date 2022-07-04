@@ -9,6 +9,12 @@ export default class TaskController {
     this.service = new TaskService();
   }
 
+  public delete = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const task = await this.service.delete(+id);
+    res.status(StatusCodes.OK).json(task);
+  };
+
   public update = async (req: Request, res: Response) => {
     const { id } = req.params;
     const Task = req.body;

@@ -37,6 +37,11 @@ export default class TaskService {
     }
   };
 
+  public delete = async (id: number) => {
+    const task = await this.model.delete(id);
+    return task;
+  };
+
   public update = async (id: number, task: Task) => {
     TaskService.taskValidator(task);
     const updatedTask = await this.model.update(id, task);
