@@ -37,6 +37,12 @@ export default class TaskService {
     }
   };
 
+  public update = async (id: number, task: Task) => {
+    TaskService.taskValidator(task);
+    const updatedTask = await this.model.update(id, task);
+    return updatedTask;
+  };
+
   public create = async (task: Task) => {
     TaskService.taskValidator(task);
     const createdTask = await this.model.create(task);

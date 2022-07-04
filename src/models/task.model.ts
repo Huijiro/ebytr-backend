@@ -8,6 +8,14 @@ export default class TaskModel {
     this.prisma = client as PrismaClient;
   }
 
+  public update = async (id: number, task: TaskI) => {
+    const updatedTask = await this.prisma.task.update({
+      where: { id },
+      data: task,
+    });
+    return updatedTask;
+  };
+
   public create = (Task: TaskI) => this.prisma.task.create({ data: Task });
 
   public getAll = () => this.prisma.task.findMany({ include: { status: true } });

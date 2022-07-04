@@ -9,6 +9,13 @@ export default class TaskController {
     this.service = new TaskService();
   }
 
+  public update = async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const Task = req.body;
+    const updatedTask = await this.service.update(+id, Task);
+    res.status(StatusCodes.OK).json(updatedTask);
+  };
+
   public create = async (req: Request, res: Response) => {
     const Task = req.body;
 
