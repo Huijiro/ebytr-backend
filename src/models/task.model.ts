@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, Task as TaskI } from '@prisma/client';
 import client from './client';
 
 export default class TaskModel {
@@ -7,6 +7,8 @@ export default class TaskModel {
   constructor() {
     this.prisma = client as PrismaClient;
   }
+
+  public create = (Task: TaskI) => this.prisma.task.create({ data: Task });
 
   public getAll = () => this.prisma.task.findMany({ include: { status: true } });
 }

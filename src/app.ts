@@ -1,12 +1,10 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
 import taskRouter from './routes/task.route';
 
 const app: Express = express();
 
-app.use('/tasks', taskRouter);
+app.use(express.json());
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
-});
+app.use('/tasks', taskRouter);
 
 export default app;

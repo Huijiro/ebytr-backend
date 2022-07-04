@@ -9,6 +9,13 @@ export default class TaskController {
     this.service = new TaskService();
   }
 
+  public create = async (req: Request, res: Response) => {
+    const Task = req.body;
+
+    const createdTask = await this.service.create(Task);
+    res.status(StatusCodes.CREATED).json(createdTask);
+  };
+
   public getAll = async (_req: Request, res: Response) => {
     const tasks = await this.service.getAll();
     return res.status(StatusCodes.OK).json(tasks);
