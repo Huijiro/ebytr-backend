@@ -21,7 +21,7 @@ export default class TaskModel {
     return updatedTask;
   };
 
-  public create = (Task: TaskI) => this.prisma.task.create({ data: Task });
+  public create = (Task: TaskI) => this.prisma.task.create({ data: { ...Task, statusId: 1 } });
 
   public getAll = () => this.prisma.task.findMany({ include: { status: true } });
 }

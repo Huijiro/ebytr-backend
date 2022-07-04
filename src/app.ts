@@ -5,6 +5,6 @@ const app: Express = express();
 
 app.use(express.json());
 
-app.use('/tasks', taskRouter);
+app.use('/api/tasks', taskRouter);
 
 export default app;
