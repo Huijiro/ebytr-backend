@@ -8,6 +8,7 @@ export default class ErrorHandler {
     res: Response,
     next: NextFunction,
   ) => {
+    console.log('Error: ', err);
     if (err instanceof HttpError) {
       res.status(err.statusCode).json({
         message: err.message,
@@ -17,6 +18,7 @@ export default class ErrorHandler {
       res.status(500).json({
         message: 'Internal server error',
         status: 500,
+        err,
       });
     }
 

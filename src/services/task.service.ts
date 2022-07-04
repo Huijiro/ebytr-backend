@@ -31,9 +31,11 @@ export default class TaskService {
         'Description must be at least 10 characters long',
       );
     }
+  };
 
-    if (!task.statusId) {
-      throw new BadRequestError('Status is required');
+  private static statusValidator = (statusId: number) => {
+    if (!statusId) {
+      throw new BadRequestError("Status can't be empty");
     }
   };
 
@@ -44,6 +46,7 @@ export default class TaskService {
 
   public update = async (id: number, task: Task) => {
     TaskService.taskValidator(task);
+    TaskService.statusValidator(task.statusId);
     const updatedTask = await this.model.update(id, task);
     return updatedTask;
   };

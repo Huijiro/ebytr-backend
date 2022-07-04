@@ -6,8 +6,11 @@ import 'express-async-errors';
 const taskRouter = express.Router();
 const taskController = new TaskController();
 
-taskRouter.get('/', taskController.getAll);
-taskRouter.post('/', taskController.create);
-taskRouter.use(ErrorHandler.handle);
+taskRouter
+  .get('/', taskController.getAll)
+  .post('/', taskController.create)
+  .delete('/:id', taskController.delete)
+  .put('/:id', taskController.update)
+  .use(ErrorHandler.handle);
 
 export default taskRouter;
